@@ -1,11 +1,4 @@
-import {
-  createContext,
-  FC,
-  ReactNode,
-  useCallback,
-  useMemo,
-  useState,
-} from "react";
+import { createContext, FC, ReactNode, useState } from "react";
 
 import {
   faAddressBook,
@@ -35,29 +28,27 @@ const icons: ReadonlyArray<IconDefinition> = [
 ];
 
 const getRandomIconIndex = (iconsList: ReadonlyArray<IconDefinition>) =>
-  Math.round(Math.random() * iconsList.length);
+  Math.floor(Math.random() * iconsList.length);
 
 interface IRandomIconContext {
-  selectIcon: () => void;
   icon: IconDefinition;
+  selectIcon: () => void;
 }
+
 export const RandomIconContext = createContext<IRandomIconContext>({
-  selectIcon: () => {},
   icon: icons[0],
+  selectIcon: () => {},
 });
 
 interface Props {
   children: ReactNode;
 }
+
 const RandomIconProvider: FC<Props> = ({ children }) => {
   const [iconIndex, setIconIndex] = useState(0);
+  const icon = icons[iconIndex];
 
-  const selectIcon = useCallback(
-    () => setIconIndex(getRandomIconIndex(icons)),
-    [setIconIndex]
-  );
-
-  const icon = useMemo(() => icons[iconIndex], [iconIndex]);
+  const selectIcon = () => setIconIndex(getRandomIconIndex(icons));
 
   return (
     <RandomIconContext.Provider value={{ selectIcon, icon }}>
