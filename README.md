@@ -1,6 +1,5 @@
-# Test task
+# Test task DocuSketch
 
-Проект, в котором будет отображаться кнопка, по нажатию на
-которую будет показана случайная иконка из библиотеки с задержкой в 3 секунды.
+A project with a button. By ckicking on it a random icon from the library will be displayed with a delay of 3 seconds.
 
-В проекте был использован контекст, чтобы сделать логику переиспользуемой и независимой от места вызова.
+The project used context to make the logic reusable and independent of the case location.
